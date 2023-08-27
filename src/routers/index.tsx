@@ -50,8 +50,8 @@ function LoadRoutes() {
 
 export default () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <LoadRoutes></LoadRoutes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
