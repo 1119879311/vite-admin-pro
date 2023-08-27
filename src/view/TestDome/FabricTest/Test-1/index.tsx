@@ -1,35 +1,15 @@
-import  React, {  MutableRefObject, useCallback, useEffect, useRef } from "react"
-import {fabric} from "fabric"
+import  React, {   useCallback, useEffect, useRef } from "react"
 import { Canvas } from "fabric/fabric-impl"
+import { useResizeObserver } from "@/hooks/useResizeObserver"
+import img1 from "../images/1.jpg"
+import {Mark} from "../mark"
 
-const useResizeObserver = (taragetRef:MutableRefObject<Element|null>,callback:Function)=>{
-    useEffect(()=>{
-        if(!taragetRef.current){
-            return
-        }
-        const resizeObj =  new ResizeObserver((entries)=>{
-            for (const entry  of entries) {
-                if (entry.contentRect) {
-                   callback(entry)
-                }
-            }
-        })
-        resizeObj.observe(taragetRef.current as HTMLDivElement)
-        return ()=>{
-            if(taragetRef.current){
-                resizeObj.unobserve(taragetRef.current as HTMLDivElement);
-            }
-        }
-        
 
-    },[taragetRef])
-
-} 
 
 const App:React.FC<{}> = ()=>{
     
     const canvasWarpRef = useRef<HTMLDivElement>(null)
-    const canvasRef = useRef(null)
+    const canvasRef = useRef<HTMLCanvasElement>(null)
     const canvasIns = useRef<Canvas>();
     const resizeCallback = useCallback((entry)=>{
         canvasIns.current?.setWidth(entry.contentRect?.width as number)
@@ -38,28 +18,10 @@ const App:React.FC<{}> = ()=>{
 
     useResizeObserver(canvasWarpRef,resizeCallback)
     useEffect(()=>{
-        const warpRect = canvasWarpRef.current?.getBoundingClientRect();
-       
-        canvasIns.current = new fabric.Canvas(canvasRef?.current,{
-            width:warpRect?.width,
-            height:warpRect?.height
-        })
 
-        var polyLine = new fabric.Polyline([
-            { x: 500, y: 20 },
-            { x: 550, y: 60 },
-            { x: 550, y: 200 },
-            { x: 350, y: 100 },
-            { x: 350, y: 60 },
-         ], {
-            stroke: "orange",
-            fill: "white",
-            strokeWidth: 5,
-            name: "Polyline instance",
-         });
-   
-        canvasIns.current.add(polyLine);
-
+        const markIns = new Mark(canvasRef.current as HTMLCanvasElement,canvasWarpRef.current as HTMLElement,{})
+        canvasIns.current = markIns.canvasIns;
+        markIns.initImage(img1)
     },[])
 
     return <div className="height-full custom-canvas-warp">
