@@ -1,0 +1,38 @@
+.virtualList_contianer{
+        position: relative;
+        height: 100%;
+        overflow: auto;
+        &.vertical{
+            overflow-y: scroll;
+        }
+        &.horizontal{ 
+            overflow-x: scroll;
+            .virtualList_scroll-list{
+                height: 100%;
+                display: inline-flex;
+                .virtualList_item{
+                    // flex: 1 1 auto;
+                    display: inline-block;
+                    height: 100%;
+                }
+            }
+            
+            
+    }
+    .virtualList_scroll-phantom,
+    .virtualList_scroll-views{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .virtualList_scroll-phantom{
+     
+        z-index: -1;
+    }
+    .virtualList_scroll-views{
+        overflow: hidden;
+  
+    }
+}

@@ -33,6 +33,9 @@ const menuData:Array<IMenuItemProps> = [
      {
       key:"2-2",label:"fabric-示例",url:'/admin/fabric',iconName:"default",
      },
+     {
+      key:"2-3",label:"virtualList -示例",url:'/admin/virtualList',iconName:"default",
+     },
   ]},
    {
     key:"3",label:"User",url:'/admin/user',iconName:"default",children:[
