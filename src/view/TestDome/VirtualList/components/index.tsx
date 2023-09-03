@@ -141,12 +141,12 @@ const App= forwardRef<IVirtualListForward,IProps>(({data=[],layout='vertical',ro
                 return
             }
           
-            // const diffPageCount = index / viewCounts.current;
+            const diffPageCount = index / viewCounts.current;
 
             // console.log("---",diffPageCount,diffPageCount<0 || index<viewCounts.current-1)
-            // if(diffPageCount<0 || index<viewCounts.current-1){
-            //     return    target.scrollTo({ top:0,left:0})
-            // }
+            if(diffPageCount<0 || index<viewCounts.current-1){
+                return    target.scrollTo({ top:0,left:0})
+            }
             let indexLen =index * itemSize
             if(startIndex>=index){
                 indexLen = indexLen + (viewCounts.current -1)* itemSize;
