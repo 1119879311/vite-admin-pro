@@ -25,7 +25,7 @@ type IeleSize = {
   width: number;
   height: number;
 };
-export function getImageSize(imgIns: HTMLImageElement): IeleSize {
+export function getImageSize(imgIns: HTMLImageElement | HTMLCanvasElement): IeleSize {
   const width = imgIns.width;
   const height = imgIns.height;
   return { width, height };

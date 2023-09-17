@@ -20,6 +20,10 @@ const dynamicsRoutesConf:IGenerateRoutes[] =  [
         filePath:"view/TestDome/VirtualList",
       },
       {
+        path: "/admin/canvas",
+        filePath:"view/TestDome/Canvas",
+      },
+      {
         path: "/admin/role",
         filePath:"view/role",
        

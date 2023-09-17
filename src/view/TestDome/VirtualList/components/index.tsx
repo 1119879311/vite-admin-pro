@@ -37,7 +37,7 @@ export type IVirtualListForward = {
 
 }
 
-const App= forwardRef<IVirtualListForward,IProps>(({data=[],layout='vertical',rowKey='key',renderItem,totals=0,itemSize= 60,prenderCount=2},ref) => {
+const App= forwardRef<IVirtualListForward,IProps>(({data=[],layout='vertical',rowKey='key',renderItem,totals=0,itemSize= 60,prenderCount=0},ref) => {
     const container  = useRef<HTMLDivElement>(null)
     const scrollPhantom  = useRef<HTMLDivElement>(null)
     const viewCounts = useRef(0)
@@ -101,23 +101,26 @@ const App= forwardRef<IVirtualListForward,IProps>(({data=[],layout='vertical',ro
             if(page===0){
                 return   target.scrollTo({ top:0,left:0})
             }
-            
-           
-            let scrollLen = target[nodeAttrs.scroll] || 0;
-           
-            // 一页多长,等于或者大于可视化宽度
-            let viewLen = viewCounts.current * itemSize;
-
             page = page>pageCounts?pageCounts:page;
+             // 一页多长,等于或者大于可视化宽度
+            let viewLen = viewCounts.current * itemSize;
+            // let scrollLen = target[nodeAttrs.scroll] || 0;
+            let client = target[nodeAttrs.client];
+            // let lens = (page) *client;
+            let diffLen = (viewCounts.current*page) *itemSize- (viewLen-client)*2;
+
+
 
             // console.log("pageCounts",pageCounts,viewCounts.current)
             // 计算当前处于第几页的
-            let diffLen =page * viewLen + scrollLen%viewLen;
+            // let diffLen =page * viewLen + scrollLen%viewLen;
+            // let diffLen = diffClent //(page+1) * viewLen-itemSize - target[nodeAttrs.client] 
 
-            if(viewLen>target[nodeAttrs.client]){ // 真实要显示的大于可视区域，要减去一个
-                diffLen  = diffLen-itemSize
-            }
-            // console.log("diffLen",index,diffLen)
+            // if(viewLen>client){ // 真实要显示的大于可视区域，要减去一个
+            //     console.log("------out",viewLen,client)
+            //     // diffLen  = diffLen-itemSize
+            // }
+            // console.log("diffLen",page,diffLen,viewLen,target[nodeAttrs.client])
             // 要滚动到的位置
             const options = isHorizontal?{left:diffLen,top:0}:{left:0,top:diffLen}
             target.scrollTo(options)
