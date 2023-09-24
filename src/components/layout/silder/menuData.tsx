@@ -11,7 +11,10 @@ export const menuData:Array<IMenuItemProps> = [
   {key:"1",label:"首页",url:'/admin',iconName:"default" },
   {key:"2",label:"测试dome",url:'/admin/dome',iconName:"default" ,children:[
     {
-      key:"2-1",label:"redux-示例",url:'/admin/redux',iconName:"default",
+      key:"2-1",label:"react-redux-示例",url:'/admin/reatRedux',iconName:"default",
+     },
+     {
+       key:"useReduxUseContext",url:"/admin/useReduxUseContext",label:"useRedux-useContext-示例"
      },
      {
       key:"2-2",label:"fabric-示例",url:'/admin/fabric',iconName:"default",

@@ -8,9 +8,14 @@ const dynamicsRoutesConf:IGenerateRoutes[] =  [
       },
       
       {
-        path: "/admin/redux",
+        path: "/admin/reatRedux",
         filePath:"view/TestDome/ReduxTest",
       },
+      {
+        path:"/admin/useReduxUseContext",
+        filePath:"view/TestDome/useReducerUseContext"
+      },
+
       {
         path: "/admin/fabric",
         filePath:"view/TestDome/FabricTest",
