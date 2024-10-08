@@ -1,0 +1,70 @@
+@comPrex:a_spaceLayout;
+
+
+// 内容超出可视滚动
+.@{comPrex}-body {
+    flex-grow: 1;
+    overflow: hidden;
+    height: 100%;
+    .@{comPrex}-body-srcoll {
+      height: 100%;
+      overflow: auto;
+    }
+}
+// vertical 垂直
+
+.@{comPrex}-container{
+  &-horizontal,
+  &-vertical{
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    &.between{
+      justify-content: space-between;
+    }
+    &.center{
+      justify-content: center;
+    }
+    &.around{
+      justify-content: space-around;
+    }
+    &.start{
+      justify-content: flex-start;
+    }
+    &.end{
+      justify-content: flex-end;
+    }
+
+    >.@{comPrex}-body{
+      &.ellipsis{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      
+    }
+
+    &.no-layout{
+      >.@{comPrex}-body-default{
+          flex: 1 1 auto;
+        }
+     
+
+    }
+  }
+
+  // 垂直
+  &-vertical {
+    flex-direction: column;
+  
+    >.@{comPrex}-footer {
+      display: flex;
+
+    }
+  }
+  // 水平
+  &-horizontal {
+    width: 100%;
+  }
+
+}

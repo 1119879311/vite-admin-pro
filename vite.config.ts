@@ -4,6 +4,7 @@ import { resolve } from "path";
 import vitePluginImp from "vite-plugin-imp";
 // https://vitejs.dev/config/
 export default defineConfig({
+  base:"",
   plugins: [
     react({
       // babel: {

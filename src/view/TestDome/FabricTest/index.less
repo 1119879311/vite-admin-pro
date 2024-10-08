@@ -1,41 +1,88 @@
-.canvas-bg-1{
-    background: linear-gradient(135deg,#eee 50%,#fff 50%);
-    background-size: 20px 20px;
+.canvas-bg-1 {
+  background: linear-gradient(135deg, #eee 50%, #fff 50%);
+  background-size: 20px 20px;
 }
-.canvas-bg-2{
-    background-image: linear-gradient(45deg,rgba(0,0,0,.05) 25%,transparent 0,transparent 75%,rgba(0,0,0,.05) 0),
-    linear-gradient(45deg,rgba(0,0,0,.05) 25%,transparent 0,transparent 75%,rgba(0,0,0,.05) 0);
-    background-color: #f9f9f9;
-    background-size: 30px 30px;
-    background-position: 0 0,15px 15px;
+.canvas-bg-2 {
+  background-image: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.05) 25%,
+      transparent 0,
+      transparent 75%,
+      rgba(0, 0, 0, 0.05) 0
+    ),
+    linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.05) 25%,
+      transparent 0,
+      transparent 75%,
+      rgba(0, 0, 0, 0.05) 0
+    );
+  background-color: #f9f9f9;
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
 }
 
-.flex{
+.flex {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  > .flex-auto {
+    flex: 1 1 auto;
+  }
+  &-vertical {
+    flex-direction: column;
+  }
+  &-between {
+    justify-content: space-between;
+  }
+}
+
+.meun-box {
+  border: 1px solid #ddd;
+  background: #fff;
+  min-width: 120px;
+  border-radius: 4px;
+  &-title {
+    padding: 10px 12px;
     display: flex;
-    align-items: center;
-    flex-flow: row nowrap;
-    >.flex-auto{
-        flex: 1 1 auto;
-    }
-    &-vertical{
-        flex-direction: column;
-    }
-    &-between{
-        justify-content: space-between;
-    }
-}
-
-
-.custom-canvas-warp{
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
     position: relative;
-    padding-left: 40px;
-    .tool-left{
-        left: 0;
-        position: absolute;
-        width: 40px;
-        border: 1px solid #f5f3f3;
-        border-right: none;
+    .close {
+      font-size: 16px;
+      transition: all 0.3s linear;
+      cursor: pointer;
+      position: absolute;
+      right: 12px;
+      top: 4px;
+      &:hover {
+        color: #1890ff;
+      }
     }
+  }
+  &-item {
+    padding: 4px 12px;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    &:hover {
+      background-color: #1890ff;
+      color: #fff;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 
-
+.custom-canvas-warp {
+  position: relative;
+  padding-left: 40px;
+  .tool-left {
+    left: 0;
+    position: absolute;
+    width: 40px;
+    border: 1px solid #f5f3f3;
+    border-right: none;
+  }
+}

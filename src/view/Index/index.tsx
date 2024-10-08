@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import Layout from "../../components/layout/index";
-import Silder from "../../components/layout/silder";
+import Layout from "../../components/layout--/index/index";
+import Silder from "../../components/layout--/silder";
 
 interface IAppProps {}
 

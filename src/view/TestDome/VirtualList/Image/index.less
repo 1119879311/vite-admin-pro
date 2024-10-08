@@ -1,0 +1,30 @@
+.Image-warp {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  .Image-container,
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .Image-loading,
+  .Image-error {
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+  }
+  .Image-loading {
+    animation: loadingCircle 2s infinite linear;
+  }
+}
+
+@keyframes loadingCircle {
+  to {
+    transform: rotate(360deg);
+  }
+}

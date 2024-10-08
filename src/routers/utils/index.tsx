@@ -8,6 +8,7 @@ export const getView = (path: string) => {
 export interface IGenerateRoutes extends RouteObject {
   filePath: string;
   children?: IGenerateRoutes[];
+  component?: () => JSX.Element;
 }
 
 /**
@@ -21,7 +22,10 @@ export function generateRoutes(
   return IRouterConfig.map((item) => {
     const { filePath, children, ...itemRoute } = item;
 
-    if (!itemRoute.element) {
+    if (item.component) {
+      let RouerCompoent = item.component;
+      itemRoute.element = <RouerCompoent />;
+    } else if (!itemRoute.element && filePath) {
       let RouerCompoent = getView(filePath);
       itemRoute.element = <RouerCompoent />;
     }

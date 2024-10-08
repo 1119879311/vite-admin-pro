@@ -1,15 +1,9 @@
 import React, { Suspense, useEffect, useState } from "react";
-import {
-  useRoutes,
-  BrowserRouter,
-  HashRouter,
-} from "react-router-dom";
-
+import { useRoutes, BrowserRouter, HashRouter } from "react-router-dom";
 import Login from "@/view/login";
-import Layout from "@/components/layout/index";
+import Layout from "@components/layout--/index/index";
 import Nofount from "@/view/NoFount/404";
 import { dynamicsRoutes } from "./data/routes";
-
 
 function LoadRoutes() {
   let [addRoutes, setAddRoutes] = useState<any[]>([]);

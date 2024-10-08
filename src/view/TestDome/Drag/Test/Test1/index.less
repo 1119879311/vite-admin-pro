@@ -1,0 +1,26 @@
+/* 添加到您的样式表中，或者在 style 标签中定义 */
+.draggable-highlight * {
+  background-color: red !important; /* 选择一个合适的高亮颜色 */
+  cursor: move !important; /* 可选的，可以给用户视觉反馈，表示该行是可以移动的 */
+}
+
+/* 可拖拽行悬停时的光标 */
+.ant-table-tbody > tr.draggable-row:hover {
+  cursor: grab; /* 或 cursor: pointer; */
+}
+
+/* 拖拽过程中的光标（可选） */
+/* 注意：在某些浏览器中，拖拽过程中可能不允许更改光标样式 */
+.ant-table-tbody > tr.draggable-row:active {
+  cursor: grabbing; /* 正在被拖拽的行 */
+}
+
+/* 当鼠标悬停在拖拽手柄上时显示grab手势 */
+.drag-handle {
+  cursor: grab; /* 或者使用 'pointer' */
+}
+
+/* 当元素被拖拽时应用 grabbing 手势 */
+.ant-table-row-dragging > * {
+  cursor: grabbing !important;
+}
