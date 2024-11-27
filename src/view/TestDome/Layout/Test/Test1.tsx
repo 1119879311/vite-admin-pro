@@ -7,13 +7,13 @@ const createStateModel = (initVlaue: any) => {
   const [state, setState] = useState(initVlaue);
   return {
     default: { state, setState },
-    // user: { name: "admin" },
+    user: { name: "admin" },
   };
 };
 
-const Store = createStore(
+const Store = createStore<ReturnType<typeof createStateModel>>(
   () => createStateModel(10),
-  {} as ReturnType<typeof createStateModel>
+  // {} as ReturnType<typeof createStateModel>
 );
 // const createState = (type?: any) => {
 //   console.log("-----", type);
@@ -33,8 +33,11 @@ const Store = createStore(
 // const outState = createStateModel(2);
 
 const Child1 = React.memo(() => {
-  const models = Store.useModel("default");
-  console.log("child1", models.state);
+  const models = Store.useModel('default');
+  const model = Store.useModel("user")
+  const modelAll = Store.useModelAll()
+
+  console.log("child1", models,model.name,modelAll.user.name);
   return (
     <div>
       {/* {outState.state} */}
@@ -45,7 +48,7 @@ const Child1 = React.memo(() => {
   );
 });
 
-const Child: FC<{ useCustom: typeof createStateModel }> = ({ useCustom }) => {
+const Child: FC<{ useCustom?: typeof createStateModel }> = ({ useCustom }) => {
   const { state, setState } = Store.useModel("default");
   console.log("Child", state);
   return (
