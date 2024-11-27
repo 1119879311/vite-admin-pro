@@ -1,25 +1,23 @@
 import React, { PropsWithChildren, useContext, useState } from "react";
 
-const Provider = <T extends Function>(
+type IModelsType<T extends Record<string,any>>  = (...arg: any) => T;
+
+const Provider = <T extends Record<string,any>,>(
   Compent: React.ComponentProps<any>,
-  models: T
+  models: IModelsType<T>
 ): ((props: PropsWithChildren<any>) => JSX.Element) => {
   return (props: PropsWithChildren<any>) => {
     const modelValue = models();
     return <Compent value={modelValue} {...props} />;
   };
 };
-const createStore = <
-  T extends (...args: any) => Record<string, any>,
-  K extends ReturnType<T>
->(
-  models: T,
-  initValues: K
-) => {
+
+
+const createStore = <T extends Record<string,any>,>(models: IModelsType<T>,initValues:Partial<T>) =>{
   const StoreContext = React.createContext(initValues);
-  const useModel = (modelName: keyof K) => {
+  const useModel = (modelName?: keyof T) => {
     const stores = useContext(StoreContext);
-    return stores[modelName];
+    return modelName?stores[modelName]:stores;
   };
 
   return {
@@ -28,8 +26,5 @@ const createStore = <
   };
 };
 
-// const defaultModel = {
-
-// }
 
 export default createStore;
