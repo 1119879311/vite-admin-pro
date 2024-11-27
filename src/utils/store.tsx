@@ -12,7 +12,7 @@ const Provider = <T extends Record<string,any>,>(
   };
 };
 
-
+{/* <ReturnType<typeof createStateModel>> */}
 const createStore = <T extends Record<string,any>,>(models: IModelsType<T>,initValues:Partial<T>={}) =>{
   const StoreContext = React.createContext(initValues);
   const useModel =<K extends keyof T > (modelName: K):T[K] => {

@@ -3,34 +3,22 @@ import createStore from "@/utils/store";
 import { Button } from "antd";
 import React, { FC, useState } from "react";
 
-const createStateModel = (initVlaue: any) => {
+const useDefaultModel = (initVlaue=1111)=>{
   const [state, setState] = useState(initVlaue);
   return {
-    default: { state, setState },
+    state,setState
+  }
+}
+
+const createStateModel = () => {
+  const defaultModel = useDefaultModel()
+  return {
+    default:defaultModel,
     user: { name: "admin" },
   };
 };
 
-const Store = createStore<ReturnType<typeof createStateModel>>(
-  () => createStateModel(10),
-  // {} as ReturnType<typeof createStateModel>
-);
-// const createState = (type?: any) => {
-//   console.log("-----", type);
-//   const useCreateState = () => {
-//     const [state, setState] = useState(1);
-//     return [state, setState];
-//   };
-
-//   return useCreateState;
-// };
-
-// const createStateModel = (initialState: any) => {
-//   const [state, setState] = useState(initialState);
-//   return { state, setState };
-// };
-
-// const outState = createStateModel(2);
+const Store = createStore(createStateModel);
 
 const Child1 = React.memo(() => {
   const models = Store.useModel('default');
@@ -48,18 +36,19 @@ const Child1 = React.memo(() => {
   );
 });
 
-const Child: FC<{ useCustom?: typeof createStateModel }> = ({ useCustom }) => {
-  const { state, setState } = Store.useModel("default");
-  console.log("Child", state);
+const Child: FC<{ useCustom?: typeof createStateModel }> =React.memo( ({ useCustom }) => {
+  // const { state, setState } = Store.useModel("default");
+  // Store.useModel("user")
+  console.log("Child");
   return (
-    <div>
+    <div>Child  
       {/* {outState.state} */}
-      {state}
       {/* {state} */}
-      <Button onClick={() => setState(state + 1)}>点击</Button>
+      {/* {state} */}
+      {/* <Button onClick={() => setState(state + 1)}>点击</Button> */}
     </div>
   );
-};
+})
 
 export const LayoutTest1 = () => {
   // const useCustom = createState(1);
